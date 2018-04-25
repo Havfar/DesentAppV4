@@ -436,4 +436,20 @@
     <string name="call_to_arms_title">Challenge title</string>
     <string name="call_to_arms_description">Challenge description</string>
 
+    <!-- Profile Activity-->
+    <string name="goal_explanation">Explanation of what happens when you reach goal</string>
+    <string name="name_user_profile">Name Namesen</string>
+    <string name="avg_cf_user_profile">Avg. carbon footprint: 2.0 kgCO2</string>
+    <string name="personal_goal_user_profile">Your personal goal:</string>
+    <string name="progress_bar_num">0</string>
+
+    <string-array name="personal_goal_array">
+        <item>Save to buy solar panel</item>
+        <item>Save to buy an electric vehicle</item>
+        <item>Keep average carbon footprint below 2 kgCO&#x2082; </item>
+        <item>Keep average carbon footprint below 4 kgCO&#x2082; </item>
+        <item>Be active for at least 30 minutes every day</item>
+        <item>Create your own goal</item>
+    </string-array>
+
 </resources>

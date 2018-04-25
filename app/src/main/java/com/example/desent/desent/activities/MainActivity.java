@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Explanatory text that indicates time
     private TextView textViewTimeScale;
 
+    private TextView textViewEarthCoinsToolbar;
+
     //Tab bar for estimation
     private BottomNavigationViewEx bnveEst;
 
@@ -234,6 +236,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Navigation drawer
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        textViewEarthCoinsToolbar = (TextView) findViewById(R.id.textViewNumEarthCoinsToolbar);
+        textViewEarthCoinsToolbar.setText(String.valueOf(PreferenceManager.getDefaultSharedPreferences(this).getInt("pref_key_personal_score", 0)));
+
         // DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -577,6 +583,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ((TextView) navigationView.getHeaderView(0).findViewById(R.id.title_nav_header)).setText(PreferenceManager.getDefaultSharedPreferences(this).getString("pref_key_personal_name", ""));
         ((TextView) navigationView.getHeaderView(0).findViewById(R.id.subtitle_nav_header)).setText(PreferenceManager.getDefaultSharedPreferences(this).getString("pref_key_personal_email", ""));
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.textViewNumEarthCoins)).setText(String.valueOf(PreferenceManager.getDefaultSharedPreferences(this).getInt("pref_key_personal_score", 0)));
+
         ImageView profilePicture = navigationView.getHeaderView(0).findViewById(R.id.imageView);
 
         Uri imageUri = null;
@@ -653,6 +661,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.nav_about_us:
 
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
+                    case R.id.nav_user_profile:
+
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         drawer.closeDrawers();
                         return true;
 
