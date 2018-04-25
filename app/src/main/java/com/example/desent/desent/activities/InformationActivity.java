@@ -205,10 +205,10 @@ public class InformationActivity extends AppCompatActivity implements Navigation
         }/* else if (id == R.id.nav_user_profile) {
             startActivity(new Intent(InformationActivity.this, ProfileActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_friend_list) {
+        }*/ else if (id == R.id.nav_friends) {
             startActivity(new Intent(InformationActivity.this, FriendsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        }  else if (id == R.id.nav_call_to_arms) {
+        } /* else if (id == R.id.nav_call_to_arms) {
             startActivity(new Intent(InformationActivity.this, CallToArmsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         }*/ else if (id == R.id.nav_leaderboard) {
@@ -225,9 +225,6 @@ public class InformationActivity extends AppCompatActivity implements Navigation
             session.logoutUser();
             drawer.closeDrawer(GravityCompat.START);
         }
-        /*else if (id == R.id.nav_about_us) {
-            drawer.closeDrawer(GravityCompat.START);
-        }*/
         return true;
     }
 

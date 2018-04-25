@@ -14,6 +14,10 @@
             android:icon="@drawable/ic_assessment_black_24dp"
             android:title="@string/nav_leaderboard" />
         <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="@string/nav_friends" />
+        <item
             android:id="@+id/nav_settings"
             android:title="@string/nav_settings"
             android:icon="@drawable/ic_menu_settings"/>

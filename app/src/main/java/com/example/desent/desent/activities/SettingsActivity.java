@@ -211,6 +211,9 @@ public class SettingsActivity extends AppCompatActivity
         } else if (id == R.id.nav_about_us) {
             startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_friends) {
+            startActivity(new Intent(SettingsActivity.this, FriendsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_leaderboard) {
             startActivity(new Intent(SettingsActivity.this, LeaderboardActivity.class));
             drawer.closeDrawer(GravityCompat.START);
