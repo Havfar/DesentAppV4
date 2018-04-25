@@ -211,10 +211,10 @@ public class InformationActivity extends AppCompatActivity implements Navigation
         }  else if (id == R.id.nav_call_to_arms) {
             startActivity(new Intent(InformationActivity.this, CallToArmsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        }  else if (id == R.id.nav_leaderboard) {
+        }*/ else if (id == R.id.nav_leaderboard) {
             startActivity(new Intent(InformationActivity.this, LeaderboardActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        }*/ else if (id == R.id.nav_information) {
+        } else if (id == R.id.nav_information) {
             //startActivity(new Intent(InformationActivity.this, InformationActivity.class));
             drawer.closeDrawers();
         } else if (id == R.id.nav_about_us) {

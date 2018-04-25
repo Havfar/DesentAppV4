@@ -1,10 +1,5 @@
 package com.example.desent.desent.models;
 
-/**
- * Created by magnust on 04.07.2017.
- */
-
-
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -64,6 +59,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String D_COL_3 = "CYCLING";
     public static final String D_COL_4 = "DRIVING";
 
+    //Table for Earth coins
+    /*private static final String TABLE_EC = "EARTHCOINS";
+    public static final String EC_COL_1 = "EC";*/
 
     // COL's for TABLE_NAME
     // public static final String UI_COL_1 = "ID";
@@ -149,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + SD_ID + " INTEGER PRIMARY KEY , "
                 + SD_LAST_SUBMIT + " INTEGER, "
                 + SD_NEXT_SUBMIT + " INTEGER )");
-
+        //db.execSQL("create table " + TABLE_EC + " (" + EC_COL_1 + " NUMERIC PRIMARY KEY)");
     }
 
     @Override
@@ -1121,4 +1119,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    /*public Boolean addEarthCoins() {
+        int numEarthCoins = getTotalEarthCoins();
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        float dailyWalkingDistance = getWalkingDistanceToday();
+        System.out.println("DailyWalkingDistance: " + dailyWalkingDistance);
+        if (dailyWalkingDistance >= 3.0){
+            numEarthCoins += 1;
+        }
+        float dailyCyclingDistance = getCyclingDistanceToday();
+        System.out.println("DailyCyclingDistance: " + dailyCyclingDistance);
+        if (dailyCyclingDistance >= 5){
+            numEarthCoins += 1;
+        }
+        contentValues.put(EC_COL_1,numEarthCoins);
+        long result = db.insert(TABLE_EC, null, contentValues);
+        db.close();
+        return result != -1;
+    }
+
+    public int getTotalEarthCoins() {
+        int numEarthCoins = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        //String query = "SELECT EC_COL_1 FROM TABLE_EC";
+        Cursor cursor = db.rawQuery("SELECT " + EC_COL_1 + " FROM " + TABLE_EC, null);
+        //System.out.println(db.rawQuery(query, null));
+        if (cursor.moveToFirst()) {
+            numEarthCoins = cursor.getInt(cursor.getColumnIndex("EC_COL_1"));
+        }
+        System.out.println("Num Earth hentet og er " + numEarthCoins);
+        return numEarthCoins;
+    }*/
 }

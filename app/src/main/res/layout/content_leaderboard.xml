@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="?attr/actionBarSize"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+        android:id="@+id/navLeaderboardSort"
+        app:elevation="0dp"
+        android:background="?attr/colorPrimary"
+        app:itemTextColor="@color/selector_time_navigation_white_grey"
+        app:itemIconTint="@color/selector_time_navigation_white_grey"
+        app:menu="@menu/activity_leaderboard_sort_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/frameLayoutPodium"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/navLeaderboardSort"
+        android:layout_height="235dp"
+        android:layout_centerHorizontal="true" >
+
+        <ImageView
+            android:id="@+id/imgPodium"
+            android:src="@drawable/podium"
+            android:layout_gravity="center|bottom"
+            android:tint="@color/blue"
+            android:layout_width="match_parent"
+            android:layout_height="143dp" />
+
+        <ImageView
+            android:id="@+id/imgFirstPlace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center|top"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNameFirstPlace"
+            android:text="@string/name_1_place"
+            android:layout_marginTop="60dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_gravity="center|top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvAvgCfFirstPlace"
+            android:text="@string/avg_cf_1_place"
+            android:visibility="visible"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_marginTop="73dp"
+            android:layout_gravity="center|top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/llNumCoinsFirst"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="73dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center|top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvNumCoinsFirstPlace"
+                android:text="@string/num_ec_1_place"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/earthCoinInPodiumFirst"
+                android:src="@drawable/earthcoin"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imgSecondPlace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="65dp"
+            android:layout_gravity="left"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNameSecondPlace"
+            android:text="@string/name_2_place"
+            android:layout_marginTop="100dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvAvgCfSecondPlace"
+            android:text="@string/avg_cf_2_place"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_marginTop="115dp"
+            android:visibility="visible"
+            android:layout_gravity="left"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/llNumCoinsSecond"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="115dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvNumCoinsSecondPlace"
+                android:text="@string/num_ec_2_place"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/earthCoinInPodiumSecond"
+                android:src="@drawable/earthcoin"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgThirdPlace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginRight="60dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNameThirdPlace"
+            android:text="@string/name_3_place"
+            android:layout_marginTop="115dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginRight="50dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvAvgCfThirdPlace"
+            android:text="@string/avg_cf_3_place"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_marginTop="130dp"
+            android:visibility="visible"
+            android:layout_gravity="right"
+            android:layout_marginRight="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/llNumCoinsThird"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="130dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvNumCoinsThirdPlace"
+                android:text="@string/num_cf_3_place"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/earthCoinInPodiumThird"
+                android:src="@drawable/earthcoin"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/frameLayoutPodium"
+        android:id="@+id/rvLeaderboard"
+        android:layout_marginTop="5dp"
+        android:layout_centerInParent="true"
+        android:layout_width="290dp"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

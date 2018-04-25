@@ -97,10 +97,10 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_call_to_arms) {
             startActivity(new Intent(AboutUsActivity.this, CallToArmsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_leaderboard) {
+        } */else if (id == R.id.nav_leaderboard) {
             startActivity(new Intent(AboutUsActivity.this, LeaderboardActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_info_app) {
+        } /*else if (id == R.id.nav_info_app) {
             //startActivity(new Intent(InformationActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         }*/ else if (id == R.id.nav_about_us) {
