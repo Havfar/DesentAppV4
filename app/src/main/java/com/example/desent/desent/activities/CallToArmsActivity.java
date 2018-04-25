@@ -21,8 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
-import com.example.desent.desent.models.Friend;
-import com.example.desent.desent.models.FriendAdapter;
+import com.example.desent.desent.models.Challenge;
+import com.example.desent.desent.models.ChallengeAdapter;
 import com.example.desent.desent.utils.SessionManagement;
 import com.example.desent.desent.utils.Utility;
 
@@ -30,22 +30,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class CallToArmsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ProgressDialog progressDialog;
 
     DrawerLayout drawer;
 
-    FriendAdapter adapter;
-    List<Friend> friendList;
+    ChallengeAdapter adapter;
+    List<Challenge> challengeList;
     RecyclerView recyclerView;
-
-    //SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friends);
+        setContentView(R.layout.activity_call_to_arms);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,88 +53,30 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         setUpNavigationView();
 
         //getting the recyclerview from xml
-        recyclerView = (RecyclerView) findViewById(R.id.rvFriends);
+        recyclerView = (RecyclerView) findViewById(R.id.rvCallToArms);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //initializing the friendlist
-        friendList = new ArrayList<>();
+        //initializing the challengelist
+        challengeList = new ArrayList<>();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
 
-        //method for retrieving friends from sql db
-        //loadFriends();
-
-        friendList.add(new Friend(1, "Rob Adams", 135, 3.2, R.drawable.robadams));
-        friendList.add(new Friend(2, "Mary Jones", 230, 2.2, R.drawable.maryjones));
-        friendList.add(new Friend(3, "Patricia Clarkson", 53, 6.2, R.drawable.patriciaclarkson));
-        friendList.add(new Friend(4, "Michael Smith", 310, 1.2, R.drawable.michaelsmith));
-        friendList.add(new Friend(5, "James Pitt", 32, 6.4, R.drawable.jamespitt));
+        challengeList.add(new Challenge(1, "Invite Friends", "Invite 10 new friends to start using the app.", 7, "40"));
+        challengeList.add(new Challenge(2, "Car-Free Weekend", "Leave the car unused for the weekend. The air quality is poor at the moment, and driving less will help improve air quality.", 2, "20"));
+        challengeList.add(new Challenge(3, "Car-Free Work Week", "Leave the car unused during the work week. Take the bike or walk instead. This will give you health benefits as well as saving you both money and the environment.", 5, "50"));
+        challengeList.add(new Challenge(4, "Lower Your Average Carbon Footprint", "Help save the environment by lowering your avg. daily emissions. During a month, you must lower your average by 40%.", 30, "70"));
 
         //creating recyclerview adapter
-        FriendAdapter adapter = new FriendAdapter(this, friendList);
+        ChallengeAdapter adapter = new ChallengeAdapter(this, challengeList);
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
     }
-
-    //method for retrieving friends from sql db
-    /*
-    private void loadFriends() {
-        progressDialog.show();
-        StringRequest stringRequest = new StringRequest(
-                Request.Method.GET,
-                Constants.URL_RETRIEVE_FRIENDS,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-                        try {
-                            JSONArray scores = new JSONArray(response);
-
-                            for (int i = 0; i < scores.length(); i++){
-                                JSONObject scoreObject = scores.getJSONObject(i);
-
-                                int id = scoreObject.getInt("id");
-                                //String email = scoreObject.getString("email");
-                                String name = scoreObject.getString("name");
-                                int num_coins = scoreObject.getInt("num_coins");
-                                /*int walk = scoreObject.getInt("walk");
-                                int cycle = scoreObject.getInt("cycle");
-                                int drive = scoreObject.getInt("drive");*/
-    /*
-                                double avg_cf = scoreObject.getDouble("avg_cf");
-
-                                Friend friend = new Friend(id, name, num_coins, avg_cf, R.drawable.earth1);
-                                friendList.add(friend);
-                            }
-                            //creating recyclerview adapter
-                            adapter = new FriendAdapter(FriendsActivity.this, friendList);
-
-                            //setting adapter to recyclerview
-                            recyclerView.setAdapter(adapter);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
-    }
-    */
 
     protected void setUpNavigationView() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -173,31 +113,31 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            startActivity(new Intent(FriendsActivity.this, MainActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, MainActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_history) {
-            startActivity(new Intent(FriendsActivity.this, HistoryActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, HistoryActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_settings) {
-            startActivity(new Intent(FriendsActivity.this, SettingsActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } /*else if (id == R.id.nav_user_profile) {
-            startActivity(new Intent(FriendsActivity.this, ProfileActivity.class));
+        }/* else if (id == R.id.nav_user_profile) {
+            startActivity(new Intent(CallToArmsActivity.this, ProfileActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } */else if (id == R.id.nav_friends) {
-            //startActivity(new Intent(FriendsActivity.this, FriendsActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, FriendsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_call_to_arms) {
-            startActivity(new Intent(FriendsActivity.this, CallToArmsActivity.class));
+        }  else if (id == R.id.nav_call_to_arms) {
+            //startActivity(new Intent(AboutUsActivity.this, CallToArmsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_leaderboard) {
-            startActivity(new Intent(FriendsActivity.this, LeaderboardActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, LeaderboardActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_information) {
-            startActivity(new Intent(FriendsActivity.this, InformationActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_about_us) {
-            startActivity(new Intent(FriendsActivity.this, AboutUsActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, AboutUsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_log_out){
             SessionManagement session = new SessionManagement(getApplicationContext());

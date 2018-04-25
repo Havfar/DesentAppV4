@@ -85,6 +85,7 @@
     <string name="nav_history">History</string>
     <string name="nav_leaderboard">Leaderboard</string>
     <string name="nav_friends">Friends</string>
+    <string name="nav_challenges">Challenges</string>
     <string name="nav_settings">Settings</string>
     <string name="nav_about_us">About Us</string>
     <string name="nav_information">How does this app work?</string>
@@ -430,5 +431,9 @@
     <string name="name_3_place">Name Namesen 3</string>
     <string name="avg_cf_3_place">2.0 kgCO2</string>
     <string name="num_cf_3_place">120</string>
+
+    <!-- Call To Arms Activity-->
+    <string name="call_to_arms_title">Challenge title</string>
+    <string name="call_to_arms_description">Challenge description</string>
 
 </resources>

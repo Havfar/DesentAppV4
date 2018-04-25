@@ -18,13 +18,17 @@
             android:icon="@drawable/ic_group_black_24dp"
             android:title="@string/nav_friends" />
         <item
-            android:id="@+id/nav_settings"
-            android:title="@string/nav_settings"
-            android:icon="@drawable/ic_menu_settings"/>
+            android:id="@+id/nav_call_to_arms"
+            android:icon="@drawable/ic_timer_black_24dp"
+            android:title="@string/nav_challenges" />
         <item
             android:id="@+id/nav_information"
             android:title="@string/nav_information"
             android:icon="@drawable/ic_menu_info"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/nav_settings"
+            android:icon="@drawable/ic_menu_settings"/>
         <item
             android:id="@+id/nav_about_us"
             android:title="@string/nav_about_us"

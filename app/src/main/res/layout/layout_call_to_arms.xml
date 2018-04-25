@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/call_to_arms_title"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentLeft="true"
+                android:paddingTop="50dp"
+                android:textStyle="italic"
+                android:text="@string/call_to_arms_description"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/textViewDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewTitle"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:text="7 days"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewPrize"
+                android:layout_below="@id/textViewTitle"
+                android:layout_toRightOf="@id/textViewDuration"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:text="Earn 40"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:src="@drawable/earthcoin"
+                android:id="@+id/earth_coin"
+                android:layout_below="@id/textViewTitle"
+                android:layout_toRightOf="@id/textViewPrize"
+                android:layout_marginLeft="2dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+            <Button
+                android:id="@+id/btnStart"
+                android:text="Start"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/textViewTitle"
+                android:layout_toRightOf="@+id/textViewDescription"
+                android:textSize="10sp"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

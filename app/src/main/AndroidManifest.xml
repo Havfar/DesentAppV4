@@ -57,6 +57,11 @@
         </activity>
 
         <activity
+            android:name=".activities.CallToArmsActivity"
+            android:label="Challenges">
+        </activity>
+
+        <activity
             android:name=".activities.LeaderboardActivity"
             android:label="Leaderboard">
         </activity>
