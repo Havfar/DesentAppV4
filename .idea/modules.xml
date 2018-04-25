@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGit\DESENT.iml" filepath="C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGit\DESENT.iml" />
       <module fileurl="file://C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGit\DesentApp.iml" filepath="C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGit\DesentApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DesentPeterGit.iml" filepath="$PROJECT_DIR$/DesentPeterGit.iml" />
+      <module fileurl="file://C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGitGamification\DesentPeterGit.iml" filepath="C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGitGamification\DesentPeterGit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesentPeterGitGamification.iml" filepath="$PROJECT_DIR$/DesentPeterGitGamification.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGitGamification\app\app.iml" filepath="C:\Users\ragnhlar\AndroidStudioProjects\DesentPeterGitGamification\app\app.iml" />
     </modules>
   </component>
 </project>
