@@ -25,13 +25,20 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary">
 
-                <!--
-                <Spinner
-                    android:id="@+id/time_spinner"
+                <TextView
+                    android:id="@+id/textViewNumEarthCoinsToolbar"
+                    android:layout_marginLeft="90dp"
+                    android:text="90"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:src="@drawable/earthcoin"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp" />
 
             </android.support.v7.widget.Toolbar>
 
