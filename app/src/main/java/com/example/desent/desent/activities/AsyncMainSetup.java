@@ -198,10 +198,5 @@ public class AsyncMainSetup extends AsyncTask {
         housingDashboardFragment.setCategoryIndex(1);
         housingDashboardFragment.setIndicator(carbonFootprint);
         housingDashboardFragment.setUp();
-
     }
-
-
-
-
 }

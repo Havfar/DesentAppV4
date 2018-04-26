@@ -637,7 +637,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             walkedToday = 0;
         }
         //remove to get the app to work properly
-        float hardcodedWalkingDistanceToday = (float) 3;
+        float hardcodedWalkingDistanceToday = (float) 4;
+
         return hardcodedWalkingDistanceToday;
 
         //remove comment to make the app work properly
@@ -657,7 +658,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             walkedToday = 0;
         }
         //remove to get the app to work properly
-        float hardCodedWalkedToday = (float) 3;
+        float hardCodedWalkedToday = (float) 4;
         return hardCodedWalkedToday;
 
         //remove comment to make the app work properly
@@ -774,7 +775,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         float cycleToday;
 
         //remove to get the app to work properly
-        float hardcodedCycleToday = 4;
+        float hardcodedCycleToday = 9;
 
         if (cursor.getCount()>0){
             cursor.moveToLast();
@@ -798,7 +799,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         float cycleToday;
 
         //remove to get the app to work properly
-        float hardcodedCycleToday = 4;
+        float hardcodedCycleToday = 9;
 
         if (cursor.getCount()>0){
             cursor.moveToLast();

@@ -51,6 +51,8 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
 
         ((TextView) navigationView.getHeaderView(0).findViewById(R.id.title_nav_header)).setText(PreferenceManager.getDefaultSharedPreferences(this).getString("pref_key_personal_name", ""));
         ((TextView) navigationView.getHeaderView(0).findViewById(R.id.subtitle_nav_header)).setText(PreferenceManager.getDefaultSharedPreferences(this).getString("pref_key_personal_email", ""));
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.textViewNumEarthCoins)).setText(String.valueOf(PreferenceManager.getDefaultSharedPreferences(this).getInt("pref_key_personal_score", 0)));
+
         ImageView profilePicture = navigationView.getHeaderView(0).findViewById(R.id.imageView);
 
         Uri imageUri = null;

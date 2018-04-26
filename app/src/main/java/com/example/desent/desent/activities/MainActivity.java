@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,10 +27,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
@@ -50,8 +49,6 @@ import com.example.desent.desent.models.EnergyConsumption;
 import com.example.desent.desent.models.EnergyDatabaseUpdate;
 import com.example.desent.desent.models.Expenses;
 import com.example.desent.desent.models.Indicator;
-import com.example.desent.desent.models.Transportation;
-import com.example.desent.desent.models.VehicleCost;
 import com.example.desent.desent.utils.EstimationType;
 import com.example.desent.desent.utils.SessionManagement;
 import com.example.desent.desent.utils.TimeScale;
@@ -80,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView textViewTimeScale;
 
     private TextView textViewEarthCoinsToolbar;
+
+    private static float currentWalkingDistToday;
+    private static float currentCyclingDistToday;
+    static float currentActiveMinutesToday;
+    static float currentCarbonFootprintToday;
+    static int currentScore;
 
     //Tab bar for estimation
     private BottomNavigationViewEx bnveEst;
@@ -132,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //Energy
     Handler EnergyHandler = new Handler();
+
+    Handler ScoreHandler = new Handler();
 
     public EnergyDatabaseUpdate energyDatabaseUpdate;
     public DatabaseHelper mDatabaseHelper;
@@ -238,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         textViewEarthCoinsToolbar = (TextView) findViewById(R.id.textViewNumEarthCoinsToolbar);
+        //updateScore();
         textViewEarthCoinsToolbar.setText(String.valueOf(PreferenceManager.getDefaultSharedPreferences(this).getInt("pref_key_personal_score", 0)));
 
         // DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -359,7 +365,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 ft.hide(cyclingDistanceFragment);
                                 ft.hide(solarPanelSizeFragment);
                                 ft.commit();
-
 
                                 break;
 
@@ -539,6 +544,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDatabaseHelper = new DatabaseHelper(this);
 
         EnergyUpdatesRunnableCode.run();
+
+        //Thread that checks if score should be updated
+        ScoreUpdatesRunnableCode.run();
     }
 
     @Override
@@ -557,8 +565,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //distanceTracking.stop();
         //unregisterReceiver(distanceTracking.getFenceReceiver());
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -783,6 +789,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             updateOwnEnergy();
             updateCO2left();
             updateDaysLeftSolarPanel();
+            //updateScore();
         }
     }
 
@@ -831,6 +838,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         indicatorsBarFragment = (IndicatorsBarFragment) getFragmentManager().findFragmentById(R.id.indicators_bar);
 
+        //updateScore();
+
         setUpNavigationView();
     }
 
@@ -858,4 +867,134 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
     };
+
+    public Runnable ScoreUpdatesRunnableCode = new Runnable() {
+        @Override
+        public void run() {
+            int score = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0);
+
+            System.out.println("Score before: " + currentScore + " Score retrieved from shared preferences: " + score);
+
+            float walkingDistToday = mDatabaseHelper.getWalkingDistanceToday();
+            float cyclingDistToday = mDatabaseHelper.getCyclingDistanceToday();
+            float activeMinutesToday = 0;
+            float carbonFootprintToday = 0;
+
+            for (Indicator indicator : indicators){
+                indicator.setEstimationType(EstimationType.NONE);
+                if (indicator.getName().equals("Active minutes")){
+                    activeMinutesToday = indicator.calculateTotalAverageValue();
+                    break;
+                }
+                if (indicator.getName().equals("Carbon footprint")){
+                    carbonFootprintToday = indicator.calculateTotalAverageValue();
+                    break;
+                }
+            }
+
+            if (currentWalkingDistToday != walkingDistToday){
+                if (walkingDistToday >= 3){
+                    if (walkingDistToday >= 3 && walkingDistToday < 5){
+                        score += 1;
+                    } else if (walkingDistToday >= 5 && walkingDistToday < 7){
+                        score += 2;
+                    } else if (walkingDistToday >= 7){
+                        score += 3;
+                    }
+                    Toast.makeText(getApplicationContext(),"Walking distance: " + walkingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                }
+                currentWalkingDistToday = walkingDistToday;
+            }
+
+            if (currentCyclingDistToday != cyclingDistToday){
+                if (cyclingDistToday >= 3){
+                    if (cyclingDistToday >= 3 && cyclingDistToday < 5){
+                        score += 1;
+                    } else if (cyclingDistToday >= 5 && cyclingDistToday < 8){
+                        score += 2;
+                    } else if (cyclingDistToday >= 8){
+                        score += 3;
+                    }
+                    Toast.makeText(getApplicationContext(),"Cycling distance: " + cyclingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                }
+                currentCyclingDistToday = cyclingDistToday;
+            }
+
+            /*if (currentCarbonFootprintToday != carbonFootprintToday) {
+                if (carbonFootprintToday > 0 && carbonFootprintToday < 4){
+                    score += 1;
+                    Toast.makeText(getApplicationContext(),"Carbon footprint " + carbonFootprintToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                }
+                currentCarbonFootprintToday = carbonFootprintToday;
+            }*/
+
+            if (currentActiveMinutesToday != activeMinutesToday){
+                if (activeMinutesToday >= 30){
+                    score += 1;
+                    Toast.makeText(getApplicationContext(),"Active minutes: " + activeMinutesToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                }
+                currentActiveMinutesToday = activeMinutesToday;
+            }
+
+            System.out.println("Score before: " + currentScore +
+                    " Score retrieved from shared preferences: " + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0) +
+                    " Score after scoreupdate: " + score);
+
+            if (currentScore != score){
+
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                editor.putInt("pref_key_personal_score", score);
+                editor.commit();
+
+                textViewEarthCoinsToolbar.setText(String.valueOf(score));
+                ((TextView) navigationView.getHeaderView(0).findViewById(R.id.textViewNumEarthCoins)).setText(String.valueOf(score));
+                currentScore = score;
+            }
+            //Runnable code repeated very 15 minutes (900000 ms = 900 s = 15 min)
+            ScoreHandler.postDelayed(ScoreUpdatesRunnableCode, 30000); //30000 = 30 sek must be changed back to ex 900000
+        }
+    };
+
+    public void updateScore(){
+        int score = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0);
+
+        float walkingDistToday = mDatabaseHelper.getWalkingDistanceToday();
+        float cyclingDistToday = mDatabaseHelper.getCyclingDistanceToday();
+        //float avgCarbonFootprint = carbonFootprint.calculateTotalAverageValue();
+        //float activeMinutesToday = activeMinutes.getDailyValue();
+
+        if (currentWalkingDistToday != walkingDistToday){
+            if (walkingDistToday >= 3){
+                if (walkingDistToday >= 3 && walkingDistToday < 5){
+                    score += 1;
+                } else if (walkingDistToday >= 5 && walkingDistToday < 7){
+                    score += 2;
+                } else if (walkingDistToday >= 7){
+                    score += 3;
+                }
+                Toast.makeText(getApplicationContext(),"Walking distance: " + walkingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
+            }
+            currentWalkingDistToday = walkingDistToday;
+        }
+        if (currentCyclingDistToday != cyclingDistToday){
+            if (cyclingDistToday >= 3){
+                if (cyclingDistToday >= 3 && cyclingDistToday < 5){
+                    score += 1;
+                } else if (cyclingDistToday >= 5 && cyclingDistToday < 8){
+                    score += 2;
+                } else if (cyclingDistToday >= 8){
+                    score += 3;
+                }
+                Toast.makeText(getApplicationContext(),"Cycling distance: " + cyclingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
+            }
+            currentCyclingDistToday = cyclingDistToday;
+        }
+            /*if (avgCarbonFootprint <= 4.0) {
+
+            }*/
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        editor.putInt("pref_key_personal_score", score);
+        editor.commit();
+        textViewEarthCoinsToolbar.setText(String.valueOf(score));
+    }
 }

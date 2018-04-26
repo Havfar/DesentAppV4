@@ -64,7 +64,8 @@ public class RegisterConsentFragment extends Fragment {
         super.onDestroyView();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("pref_key_personal_consent", consentGiven);
-        editor.putInt("pref_key_personal_score", 5);
+        //just to create the key in shared preferences
+        editor.putInt("pref_key_personal_score", 0);
         editor.commit();
     }
 
