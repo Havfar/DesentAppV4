@@ -116,7 +116,11 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         scoreList = new ArrayList<>();
 
         //"friends" inserted until server is up an running
-        scoreList.add(new Score(0, sharedPreferences.getString("pref_key_personal_name",""), 90, 3.6, R.drawable.earth));
+        scoreList.add(new Score(0,
+                sharedPreferences.getString("pref_key_personal_name",""),
+                PreferenceManager.getDefaultSharedPreferences(this).getInt("pref_key_personal_score", 0),
+                3.6,
+                R.drawable.earth));
         scoreList.add(new Score(1, "Rob Adams", 135, 3.2, R.drawable.robadams));
         scoreList.add(new Score(2, "Mary Jones", 230, 2.2, R.drawable.maryjones));
         scoreList.add(new Score(3, "Patricia Clarkson", 53, 6.2, R.drawable.patriciaclarkson));
