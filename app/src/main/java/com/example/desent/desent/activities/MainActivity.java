@@ -955,6 +955,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     };
 
+    /*
     public void updateScore(){
         int score = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0);
 
@@ -992,9 +993,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             /*if (avgCarbonFootprint <= 4.0) {
 
             }*/
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        /*SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
         editor.putInt("pref_key_personal_score", score);
         editor.commit();
         textViewEarthCoinsToolbar.setText(String.valueOf(score));
-    }
+    }*/
 }

@@ -8,10 +8,12 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -78,14 +80,6 @@ public class ProfileActivity extends AppCompatActivity
 
         editTextPersonalGoal = (EditText)findViewById(R.id.et_personalGoal);
 
-        /*
-        indicator = new Indicator() {
-            @Override
-            public void calculateValues() {
-
-            }
-        };*/
-
         changeInfo = findViewById(R.id.changeUserInfo);
         changeInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +117,6 @@ public class ProfileActivity extends AppCompatActivity
 
         tv_coin_score = findViewById(R.id.tv_coin_score);
         tv_coin_score.setText(String.valueOf(sharedPreferences.getInt("pref_key_personal_score",0)));
-        //tv_coin_score.setText("You have " + getCoinScore());
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
         builder.setTitle("Today you have received Earth Coins (EC) from:")
@@ -142,14 +135,21 @@ public class ProfileActivity extends AppCompatActivity
                         finish();
                     }
                 });
-        builder.create();
+
+        ll_coin_score = (LinearLayout) findViewById(R.id.ll_coin_score);
+        ll_coin_score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.show();
+            }
+        });
 
         tvProgress = findViewById(R.id.tvProgress);
 
         personalGoal = (ProgressBar) findViewById(R.id.personalGoalPB);
+
         //personalGoal.setScrollBarSize(100);
         //personalGoal.setMinimumHeight(100);
-
         /*
         progressStatus = 0;
         new Thread(new Runnable() {
@@ -193,6 +193,7 @@ public class ProfileActivity extends AppCompatActivity
                         //if 100 EC is earned: receive a coupon that give 20 % discount
                         tvProgress.setVisibility(View.VISIBLE);
                         personalGoal.setVisibility(View.VISIBLE);
+                        personalGoal.setMax(100);
                         setProgressBar("solarPanel");
                         break;
                     case 1:
@@ -200,6 +201,7 @@ public class ProfileActivity extends AppCompatActivity
                         //if 200 EC is earned: receive a coupon that give 20 % discount
                         tvProgress.setVisibility(View.VISIBLE);
                         personalGoal.setVisibility(View.VISIBLE);
+                        personalGoal.setMax(200);
                         setProgressBar("electricVehicle");
                         break;
                     case 2:
@@ -266,90 +268,9 @@ public class ProfileActivity extends AppCompatActivity
 
             }
         });
-
-        //ll_coin_score = (LinearLayout) findViewById(R.id.ll_coin_score);
-        /*ll_coin_score.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                builder.show();
-            }
-        });*/
-
-
-
-        //loadUserScores();
-
-        /*email = findViewById(R.id.tvEmail);
-        email.setText(sharedPreferences.getString("pref_key_personal_email",""));
-
-        address = findViewById(R.id.tvAddress);
-        address.setText(sharedPreferences.getString("pref_key_personal_address", ""));
-
-        zipcode = findViewById(R.id.tvZipcode);
-        zipcode.setText(sharedPreferences.getString("pref_key_personal_zip_code",""));
-
-        city = findViewById(R.id.tvCity);
-        city.setText(sharedPreferences.getString("pref_key_personal_city",""));
-
-        birthdate = findViewById(R.id.tvBirthdate);
-        birthdate.setText((sharedPreferences.getString("pref_key_personal_birthdate", "")));
-
-        gender = findViewById(R.id.tvGender);
-        gender.setText(sharedPreferences.getString("pref_key_personal_gender",""));*/
-
-        /*
-        DecoView arcView = (DecoView) findViewById(R.id.dynamicArcView);
-
-        //create background track
-        arcView.addSeries(new SeriesItem.Builder(Color.argb(255,218,218,218))
-        .setRange(0,100,100)
-        .setInitialVisibility(false)
-        .setLineWidth(32f)
-        .build());
-
-        //create data series track
-        SeriesItem seriesItem1 = new SeriesItem.Builder(Color.argb(255,64,196,0))
-                .setRange(0,100,0)
-                .setLineWidth(32f)
-                .build();
-
-        int series1Index = arcView.addSeries(seriesItem1);
-
-        arcView.configureAngles(300,0);
-
-        //arcView.addSeries(new SeriesItem.Builder(Color.argb(255,218,218,218)).build());
-
-        SeriesItem seriesItem2 = new SeriesItem.Builder(Color.argb(255,64,196,0))
-                .setRange(0,100,0)
-                .setInitialVisibility(false)
-                .setLineWidth(32f)
-                .addEdgeDetail(new EdgeDetail(EdgeDetail.EdgeType.EDGE_OUTER, Color.parseColor("#22000000"),0.4f))
-                .setSeriesLabel(new SeriesLabel.Builder("Percent %.0f%%").build())
-                .setInterpolator(new OvershootInterpolator())
-                .setShowPointWhenEmpty(false)
-                .setCapRounded(false)
-                .setInset(new PointF(32f,32f))
-                .setDrawAsPoint(false)
-                .setSpinClockwise(true)
-                .setSpinDuration(6000)
-                .setChartStyle(SeriesItem.ChartStyle.STYLE_DONUT)
-                .build();
-        int series2Index = arcView.addSeries(seriesItem2);
-
-        arcView.addEvent(new DecoEvent.Builder(DecoEvent.EventType.EVENT_SHOW, true)
-                .setDelay(1000)
-                .setDuration(2000)
-                .build());
-
-        arcView.addEvent(new DecoEvent.Builder(25).setIndex(series1Index).setDelay(4000).build());
-        //arcView.addEvent(new DecoEvent.Builder(100).setIndex(series2Index).setDelay(8000).build());
-        //arcView.addEvent(new DecoEvent.Builder(10).setIndex(series2Index).setDelay(12000).build());
-
-        arcView.setHorizGravity(DecoView.HorizGravity.GRAVITY_HORIZONTAL_LEFT);
-        arcView.setVertGravity(DecoView.VertGravity.GRAVITY_VERTICAL_BOTTOM);*/
-
     }
 
+    //Code to retrieve data from sql db
     /*
     private void loadUserScores() {
         StringRequest stringRequest = new StringRequest(
@@ -514,7 +435,7 @@ public class ProfileActivity extends AppCompatActivity
         switch (progressBar){
             case "solarPanel":
                 tvGoalExplanation.setText("Earn 100 Earth Coins to receive a coupon with a discount on solar panels.");
-                progressStatus = 50; //retrieve totNumCoins
+                progressStatus = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0); //retrieve totNumCoins
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -526,9 +447,10 @@ public class ProfileActivity extends AppCompatActivity
                                 e.printStackTrace();
                             }
                             handler.post(new Runnable() {
+                                @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
                                 public void run() {
-                                    personalGoal.setProgress(progressCount);
+                                    personalGoal.setProgress(progressCount, true);
                                     tvProgress.setText(progressCount+"/100");
                                 }
                             });
@@ -537,7 +459,7 @@ public class ProfileActivity extends AppCompatActivity
                 }).start();
                 break;
             case "electricVehicle":
-                tvGoalExplanation.setText("Earn 100 Earth Coins to receive a coupon with a discount on electric car.");
+                tvGoalExplanation.setText("Earn 200 Earth Coins to receive a coupon with a discount on electric car.");
                 progressStatus = 0; //retrieve totNumCoins
                 new Thread(new Runnable() {
                     @Override
@@ -552,8 +474,8 @@ public class ProfileActivity extends AppCompatActivity
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    personalGoal.setProgress(progressCount);
-                                    tvProgress.setText(progressCount+"");
+                                    personalGoal.setProgress(progressCount, true);
+                                    tvProgress.setText(progressCount+"/200");
                                 }
                             });
                         }
