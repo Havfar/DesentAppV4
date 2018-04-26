@@ -151,6 +151,18 @@ public class Energy {
     //TODO: check
     public float[] generateArrayWeekEnergyConsumption() {
         float[] weekEnergyConsumption = new float[7];
+
+        //remove to insert real data
+        weekEnergyConsumption[0] = (float) 6.7;
+        weekEnergyConsumption[1] = (float) 8.0;
+        weekEnergyConsumption[2] = (float) 8.3;
+        weekEnergyConsumption[3] = (float) 7.8;
+        weekEnergyConsumption[4] = (float) 8.8;
+        weekEnergyConsumption[5] = (float) 9.2;
+        weekEnergyConsumption[6] = (float) 9.4;
+
+        //remove comment to get the app to work properly
+        /*
         Calendar calendar = Calendar.getInstance();
 
         int start = (calendar.get(Calendar.DAY_OF_YEAR)-7) * 24;
@@ -159,7 +171,7 @@ public class Energy {
         for (int i = start; i <= stop; i++){
             int j = (i-start) / 24;
             weekEnergyConsumption[j] += (db.getHeat(i) > -100) ? db.getHeat(i) : 0;
-        }
+        }*/
 
         return weekEnergyConsumption;
     }
