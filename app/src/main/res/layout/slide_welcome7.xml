@@ -21,16 +21,13 @@
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView10"
-            android:scaleY="0.8"
-            android:scaleX="0.8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/earthcoin"/>
 
     </LinearLayout>
@@ -44,5 +41,14 @@
         android:gravity="center"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/slide_desc" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="270dp"
+        android:layout_height="155dp"
+        android:background="@color/dark_grey"
+        android:padding="1dp"
+        android:src="@drawable/personal_goal_progress"/>
 
 </LinearLayout>
