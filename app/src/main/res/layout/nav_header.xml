@@ -36,7 +36,7 @@
             android:id="@+id/textViewNumEarthCoins"
             android:text="90"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="80dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

@@ -16,7 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"/>
+            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay">
+
+            <Button
+                android:id="@+id/btnRules"
+                android:layout_marginLeft="150dp"
+                android:text="Rules"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 

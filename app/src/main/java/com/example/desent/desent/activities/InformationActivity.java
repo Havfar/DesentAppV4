@@ -1,6 +1,8 @@
 package com.example.desent.desent.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,7 +39,7 @@ public class InformationActivity extends AppCompatActivity implements Navigation
     private ViewPager viewPager;
     private LinearLayout dotsLayout;
     private int[] layouts;
-    private Button btnSkip, btnNext;
+    private Button btnSkip, btnNext, btnRules;
     private DrawerLayout drawer;
 
     @Override
@@ -61,20 +63,51 @@ public class InformationActivity extends AppCompatActivity implements Navigation
         //btnSkip = findViewById(R.id.btn_skip);
         btnNext = findViewById(R.id.btn_next);
 
+        //Display rules
+        btnRules = findViewById(R.id.btnRules);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(InformationActivity.this);
+        builder.setTitle("You receive Earth Coins (EC) in the following situations:")
+                .setMessage("Stay on top of the leaderboard for a week: 2 EC" + "\n" +
+                        "Add a friend: 1 EC" + "\n" +
+                        "Reaches the goal of 30 active minutes in a day: 1 EC" + "\n" +
+                        "Cycles: between 3 - 5 km in a day: 1 EC" + "\n" +
+                        "Cycles: between 5 - 7 km in a day: 2 EC" + "\n" +
+                        "Cycles: over 7 km in a day: 3 EC" + "\n" +
+                        "Walks: between 3 - 5 km km in a day : 1 EC" + "\n" + "\n" +
+                        "Walks: between 5 - 7 km km in a day : 2 EC" + "\n" + "\n" +
+                        "Walks: over 7 km in a day : 3 EC" + "\n" + "\n" +
+                        "Completing challenges: various amount of EC" + "\n" +
+                        "Gifting: when giving Earth Coins to another player, receive a bonus of one EC per ten EC gifted." + "\n" + "\n" +
+                        "Carbon footprint is below 4 kgCO2 during a day.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+
+        btnRules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.show();
+            }
+        });
+
         // layouts of all welcome slides
         // add few more layouts if you want
         layouts = new int[]{
-                R.layout.slide_welcome0,
+                //R.layout.slide_welcome0,
                 R.layout.slide_welcome1,
                 R.layout.slide_welcome2,
                 R.layout.slide_welcome3,
                 R.layout.slide_welcome4,
                 R.layout.slide_welcome5,
                 R.layout.slide_welcome6,
-                R.layout.slide_welcome10/*,
+                R.layout.slide_welcome7,
                 R.layout.slide_welcome8,
-                R.layout.slide_welcome9,
-                R.layout.slide_welcome10*/
+                R.layout.slide_welcome9
+                //R.layout.slide_welcome10,
         };
         System.out.println("Layouts: " + layouts.length);
 
