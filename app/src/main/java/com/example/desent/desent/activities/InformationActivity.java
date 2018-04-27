@@ -71,7 +71,7 @@ public class InformationActivity extends AppCompatActivity implements Navigation
                 R.layout.slide_welcome4,
                 R.layout.slide_welcome5,
                 R.layout.slide_welcome6,
-                R.layout.slide_welcome7/*,
+                R.layout.slide_welcome10/*,
                 R.layout.slide_welcome8,
                 R.layout.slide_welcome9,
                 R.layout.slide_welcome10*/

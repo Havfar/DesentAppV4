@@ -43,7 +43,10 @@ public class WelcomeActivity extends Activity {
                 R.layout.slide_welcome4,
                 R.layout.slide_welcome5,
                 R.layout.slide_welcome6,
-                R.layout.slide_welcome7};
+                R.layout.slide_welcome7,
+                R.layout.slide_welcome8,
+                R.layout.slide_welcome9,
+                R.layout.slide_welcome10};
 
         // adding bottom dots
         addBottomDots(0);

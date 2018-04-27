@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static float currentWalkingDistToday;
     private static float currentCyclingDistToday;
-    static float currentActiveMinutesToday;
-    static float currentCarbonFootprintToday;
-    static int currentScore;
+    private static float currentActiveMinutesToday;
+    private static float currentCarbonFootprintToday;
+    private static int currentScore;
 
     //Tab bar for estimation
     private BottomNavigationViewEx bnveEst;
