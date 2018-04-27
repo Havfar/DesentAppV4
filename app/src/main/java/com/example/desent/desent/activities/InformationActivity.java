@@ -68,18 +68,20 @@ public class InformationActivity extends AppCompatActivity implements Navigation
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(InformationActivity.this);
         builder.setTitle("You receive Earth Coins (EC) in the following situations:")
-                .setMessage("Stay on top of the leaderboard for a week: 2 EC" + "\n" +
-                        "Add a friend: 1 EC" + "\n" +
-                        "Reaches the goal of 30 active minutes in a day: 1 EC" + "\n" +
-                        "Cycles: between 3 - 5 km in a day: 1 EC" + "\n" +
-                        "Cycles: between 5 - 7 km in a day: 2 EC" + "\n" +
-                        "Cycles: over 7 km in a day: 3 EC" + "\n" +
-                        "Walks: between 3 - 5 km km in a day : 1 EC" + "\n" + "\n" +
-                        "Walks: between 5 - 7 km km in a day : 2 EC" + "\n" + "\n" +
-                        "Walks: over 7 km in a day : 3 EC" + "\n" + "\n" +
-                        "Completing challenges: various amount of EC" + "\n" +
+                .setMessage("Stay on top of the leaderboard for a week: 2 EC" + "\n" + "\n" +
+                        "Add a new friend: 1 EC" + "\n" + "\n" +
+                        "Reach the goal of 30 active minutes in a day: 1 EC" + "\n" + "\n" +
+                        "Cycles: " + "\n" +
+                        "3-5 km in a day: 1 EC" + "\n" +
+                        "5-7 km in a day: 2 EC" + "\n" +
+                        "over 7 km in a day: 3 EC" + "\n" + "\n" +
+                        "Walks: " + "\n" +
+                        "3-5 km km in a day : 1 EC" + "\n" +
+                        "5-7 km km in a day : 2 EC" + "\n" +
+                        "over 7 km in a day : 3 EC" + "\n" + "\n" +
+                        "Completing challenges: various amount of EC" + "\n" + "\n" +
                         "Gifting: when giving Earth Coins to another player, receive a bonus of one EC per ten EC gifted." + "\n" + "\n" +
-                        "Carbon footprint is below 4 kgCO2 during a day.")
+                        "Carbon footprint is below 4 kgCO2 during a day: 1 EC")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -90,7 +92,7 @@ public class InformationActivity extends AppCompatActivity implements Navigation
         btnRules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder.show();
+                builder.create().show();
             }
         });
 
