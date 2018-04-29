@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         sessionManagement = new SessionManagement(getApplicationContext());
-        Toast.makeText(getApplicationContext(), "User login status: " + sessionManagement.isLoggedIn(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "User login status: " + sessionManagement.isLoggedIn(), Toast.LENGTH_LONG).show();
         sessionManagement.checkLogin();
 
         //Accelerometer
@@ -901,7 +901,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     } else if (walkingDistToday >= 7){
                         score += 3;
                     }
-                    Toast.makeText(getApplicationContext(),"Walking distance: " + walkingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"Walking distance: " + walkingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
                 }
                 currentWalkingDistToday = walkingDistToday;
             }
@@ -915,7 +915,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     } else if (cyclingDistToday >= 8){
                         score += 3;
                     }
-                    Toast.makeText(getApplicationContext(),"Cycling distance: " + cyclingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"Cycling distance: " + cyclingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
                 }
                 currentCyclingDistToday = cyclingDistToday;
             }
@@ -923,7 +923,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             /*if (currentCarbonFootprintToday != carbonFootprintToday) {
                 if (carbonFootprintToday > 0 && carbonFootprintToday < 4){
                     score += 1;
-                    Toast.makeText(getApplicationContext(),"Carbon footprint " + carbonFootprintToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"Carbon footprint " + carbonFootprintToday + " Score: " + score, Toast.LENGTH_LONG).show();
                 }
                 currentCarbonFootprintToday = carbonFootprintToday;
             }*/
@@ -931,7 +931,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (currentActiveMinutesToday != activeMinutesToday){
                 if (activeMinutesToday >= 30){
                     score += 1;
-                    Toast.makeText(getApplicationContext(),"Active minutes: " + activeMinutesToday + " Score: " + score, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"Active minutes: " + activeMinutesToday + " Score: " + score, Toast.LENGTH_LONG).show();
                 }
                 currentActiveMinutesToday = activeMinutesToday;
             }
