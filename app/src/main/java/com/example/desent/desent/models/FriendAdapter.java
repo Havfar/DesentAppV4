@@ -56,7 +56,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
         holder.btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Contact button clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Give your friend a boost!", Toast.LENGTH_LONG).show();
 
             }
         });
