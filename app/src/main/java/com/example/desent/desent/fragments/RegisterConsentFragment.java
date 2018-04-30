@@ -14,10 +14,6 @@ import android.widget.CompoundButton;
 import com.example.desent.desent.R;
 import com.example.desent.desent.models.DatabaseHelper;
 
-/**
- * Created by ragnhlar on 28.02.2018.
- */
-
 public class RegisterConsentFragment extends Fragment {
 
 

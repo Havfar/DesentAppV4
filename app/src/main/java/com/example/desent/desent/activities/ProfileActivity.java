@@ -186,7 +186,7 @@ public class ProfileActivity extends AppCompatActivity
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i) + ", position " + i, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i) + ", position " + i, Toast.LENGTH_LONG).show();
                 switch (i){
                     case 0:
                         //save to buy a solar panel
@@ -209,6 +209,7 @@ public class ProfileActivity extends AppCompatActivity
                         //each day the avg is below 2, get one step closer to earn EC
                         tvProgress.setVisibility(View.VISIBLE);
                         personalGoal.setVisibility(View.VISIBLE);
+                        personalGoal.setMax(100);
                         setProgressBar("avgBelow2");
                         break;
                     case 3:
@@ -216,6 +217,7 @@ public class ProfileActivity extends AppCompatActivity
                         //each day the avg is below 4, get one step closer to earn EC
                         tvProgress.setVisibility(View.VISIBLE);
                         personalGoal.setVisibility(View.VISIBLE);
+                        personalGoal.setMax(100);
                         setProgressBar("avgBelow4");
                         break;
                     case 4:
@@ -223,6 +225,7 @@ public class ProfileActivity extends AppCompatActivity
                         //each day being active for at least 30 min, get one step closer to earn EC
                         tvProgress.setVisibility(View.VISIBLE);
                         personalGoal.setVisibility(View.VISIBLE);
+                        personalGoal.setMax(100);
                         setProgressBar("activeMinutes");
                         break;
                     case 5:
@@ -422,8 +425,7 @@ public class ProfileActivity extends AppCompatActivity
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-        Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
-
+        //Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -436,6 +438,7 @@ public class ProfileActivity extends AppCompatActivity
             case "solarPanel":
                 tvGoalExplanation.setText("Earn 100 Earth Coins to receive a coupon with a discount on solar panels.");
                 progressStatus = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0); //retrieve totNumCoins
+                tvProgress.setText(progressStatus+"/100");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -451,7 +454,6 @@ public class ProfileActivity extends AppCompatActivity
                                 @Override
                                 public void run() {
                                     personalGoal.setProgress(progressCount, true);
-                                    tvProgress.setText(progressCount+"/100");
                                 }
                             });
                         }
@@ -460,11 +462,12 @@ public class ProfileActivity extends AppCompatActivity
                 break;
             case "electricVehicle":
                 tvGoalExplanation.setText("Earn 200 Earth Coins to receive a coupon with a discount on electric car.");
-                progressStatus = 0; //retrieve totNumCoins
+                progressStatus = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0); //retrieve totNumCoins
+                tvProgress.setText(progressStatus+"/200");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        while (progressCount <= progressStatus){
+                        while (progressCount < progressStatus){
                             progressCount += 1;
                             try {
                                 Thread.sleep(20);
@@ -472,10 +475,10 @@ public class ProfileActivity extends AppCompatActivity
                                 e.printStackTrace();
                             }
                             handler.post(new Runnable() {
+                                @SuppressLint("NewApi")
                                 @Override
                                 public void run() {
                                     personalGoal.setProgress(progressCount, true);
-                                    tvProgress.setText(progressCount+"/200");
                                 }
                             });
                         }
@@ -484,11 +487,12 @@ public class ProfileActivity extends AppCompatActivity
                 break;
             case "avgBelow2":
                 tvGoalExplanation.setText("Each day your carbon footprint is below 2 kgCO2, get one step closer to earn 50 Earth Coins.");
-                progressStatus = 0; //retrieve totNumCoins
+                progressStatus = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0); //retrieve totNumCoins
+                tvProgress.setText(progressStatus+"/100");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        while (progressCount <= progressStatus){
+                        while (progressCount < progressStatus){
                             progressCount += 1;
                             try {
                                 Thread.sleep(20);
@@ -499,7 +503,7 @@ public class ProfileActivity extends AppCompatActivity
                                 @Override
                                 public void run() {
                                     personalGoal.setProgress(progressCount);
-                                    tvProgress.setText(progressCount+"");
+
                                 }
                             });
                         }
@@ -508,11 +512,12 @@ public class ProfileActivity extends AppCompatActivity
                 break;
             case "avgBelow4":
                 tvGoalExplanation.setText("Each day your carbon footprint is below 4 kgCO2, get one step closer to earn 25 Earth Coins.");
-                progressStatus = 0; //retrieve totNumCoins
+                progressStatus = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0); //retrieve totNumCoins
+                tvProgress.setText(progressStatus+"/100");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        while (progressCount <= progressStatus){
+                        while (progressCount < progressStatus){
                             progressCount += 1;
                             try {
                                 Thread.sleep(20);
@@ -523,7 +528,6 @@ public class ProfileActivity extends AppCompatActivity
                                 @Override
                                 public void run() {
                                     personalGoal.setProgress(progressCount);
-                                    tvProgress.setText(progressCount+"");
                                 }
                             });
                         }
@@ -532,11 +536,12 @@ public class ProfileActivity extends AppCompatActivity
                 break;
             case "activeMinutes":
                 tvGoalExplanation.setText("Each day you are active more than 30 minutes, get one step closer to earn 20 Earth Coins.");
-                progressStatus = 0; //retrieve totNumCoins
+                progressStatus = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0); //retrieve totNumCoins
+                tvProgress.setText(progressStatus+"/100");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        while (progressCount <= progressStatus){
+                        while (progressCount < progressStatus){
                             progressCount += 1;
                             try {
                                 Thread.sleep(20);
@@ -547,7 +552,6 @@ public class ProfileActivity extends AppCompatActivity
                                 @Override
                                 public void run() {
                                     personalGoal.setProgress(progressCount);
-                                    tvProgress.setText(progressCount+"");
                                 }
                             });
                         }
