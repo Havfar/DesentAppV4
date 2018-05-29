@@ -134,6 +134,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
         loadScores(sortListByAvgCf);
 
+        //code for tab bar to switch between the two leaderboards
         bnveSort = (BottomNavigationViewEx) findViewById(R.id.navLeaderboardSort);
         bnveSort.setSelectedItemId(R.id.best_avg_cf);
         bnveSort.enableAnimation(true);
@@ -269,8 +270,10 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);*/
     }
 
+    //method for updating podium
+    //placing the 1.-3. (0.-2.) place on the podium
+    //the users below 3. (2.) place is inserted in the card views below the podium
     private void updatePodium(List<Score> scoreList, Boolean sortListByAvgCf) {
-
         int counter = 0;
         for (Score score : scoreList){
             if (sortListByAvgCf){
@@ -386,5 +389,4 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         }
         return true;
     }
-
 }
