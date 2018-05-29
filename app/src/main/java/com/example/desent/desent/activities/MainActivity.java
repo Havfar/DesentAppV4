@@ -66,13 +66,12 @@ import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //Spinner timeSpinner;
-
     //SessionManager to remember user at login
     private SessionManagement sessionManagement;
 
     //Tab bar for time
     private BottomNavigationViewEx bnveTime;
+
     //Explanatory text that indicates time
     private TextView textViewTimeScale;
 
@@ -217,7 +216,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bnveTime.setSelectedItemId(R.id.time_today);
         bnveEst.setSelectedItemId(R.id.navigation_none);
         informationCO2Left.setVisibility(View.VISIBLE);
-        //timeSpinner.setSelection(0);
     }
 
     @Override
@@ -225,8 +223,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //SessionManagement, calling checkLogin()-method that checks if someone has logged in, or if it is a new user
         sessionManagement = new SessionManagement(getApplicationContext());
-        //Toast.makeText(getApplicationContext(), "User login status: " + sessionManagement.isLoggedIn(), Toast.LENGTH_LONG).show();
         sessionManagement.checkLogin();
 
         //Accelerometer
@@ -243,7 +241,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         textViewEarthCoinsToolbar = (TextView) findViewById(R.id.textViewNumEarthCoinsToolbar);
-        //updateScore();
         textViewEarthCoinsToolbar.setText(String.valueOf(PreferenceManager.getDefaultSharedPreferences(this).getInt("pref_key_personal_score", 0)));
 
         // DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -256,15 +253,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Spinners
-        /*
-        timeSpinner = (Spinner) findViewById(R.id.time_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.time_spinner_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        timeSpinner.setAdapter(adapter);*/
-
         textViewTimeScale = (TextView) findViewById(R.id.textViewTimeScale);
 
+        //code for tab bar to switch between today, this week, this month
         bnveTime = (BottomNavigationViewEx) findViewById(R.id.navTime);
         bnveTime.setSelectedItemId(R.id.time_today);
         bnveTime.enableAnimation(true);
@@ -326,10 +317,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bnveEst.setIconSize(30,30);
         bnveEst.setTextSize(14);
         bnveEst.setIconsMarginTop(5);
-
-        /*
-        final BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);*/
 
         findViewById(R.id.navigation_none).setVisibility(GONE);
 
@@ -789,15 +776,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             updateOwnEnergy();
             updateCO2left();
             updateDaysLeftSolarPanel();
-            //updateScore();
         }
     }
-
-    /*
-    public void initTimeSpinner(){
-        timeSpinner.setOnItemSelectedListener(timeSpinnerHandler);
-    }*/
-
     protected void init() {
 
         //Colors
@@ -818,7 +798,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoriesBar = findViewById(R.id.categories_bar);
 
         //Fragments
-
         carbonFootprintCircleFragment = (CircleFragment) getFragmentManager().findFragmentById(R.id.dailyCarbonFootprint);
         carbonFootprintCircleFragment.setStartAngle(135);
         carbonFootprintCircleFragment.setSweepAngle(270);
@@ -837,8 +816,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         energyFragment.init();
 
         indicatorsBarFragment = (IndicatorsBarFragment) getFragmentManager().findFragmentById(R.id.indicators_bar);
-
-        //updateScore();
 
         setUpNavigationView();
     }
@@ -868,6 +845,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     };
 
+    //Runnable thread repeated very 15 minutes (900000 ms = 900 s = 15 min)
+    //updates score if any changes has happened
     public Runnable ScoreUpdatesRunnableCode = new Runnable() {
         @Override
         public void run() {
@@ -954,48 +933,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ScoreHandler.postDelayed(ScoreUpdatesRunnableCode, 30000); //30000 = 30 sek must be changed back to ex 900000
         }
     };
-
-    /*
-    public void updateScore(){
-        int score = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("pref_key_personal_score",0);
-
-        float walkingDistToday = mDatabaseHelper.getWalkingDistanceToday();
-        float cyclingDistToday = mDatabaseHelper.getCyclingDistanceToday();
-        //float avgCarbonFootprint = carbonFootprint.calculateTotalAverageValue();
-        //float activeMinutesToday = activeMinutes.getDailyValue();
-
-        if (currentWalkingDistToday != walkingDistToday){
-            if (walkingDistToday >= 3){
-                if (walkingDistToday >= 3 && walkingDistToday < 5){
-                    score += 1;
-                } else if (walkingDistToday >= 5 && walkingDistToday < 7){
-                    score += 2;
-                } else if (walkingDistToday >= 7){
-                    score += 3;
-                }
-                Toast.makeText(getApplicationContext(),"Walking distance: " + walkingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
-            }
-            currentWalkingDistToday = walkingDistToday;
-        }
-        if (currentCyclingDistToday != cyclingDistToday){
-            if (cyclingDistToday >= 3){
-                if (cyclingDistToday >= 3 && cyclingDistToday < 5){
-                    score += 1;
-                } else if (cyclingDistToday >= 5 && cyclingDistToday < 8){
-                    score += 2;
-                } else if (cyclingDistToday >= 8){
-                    score += 3;
-                }
-                Toast.makeText(getApplicationContext(),"Cycling distance: " + cyclingDistToday + " Score: " + score, Toast.LENGTH_LONG).show();
-            }
-            currentCyclingDistToday = cyclingDistToday;
-        }
-            /*if (avgCarbonFootprint <= 4.0) {
-
-            }*/
-        /*SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-        editor.putInt("pref_key_personal_score", score);
-        editor.commit();
-        textViewEarthCoinsToolbar.setText(String.valueOf(score));
-    }*/
 }
