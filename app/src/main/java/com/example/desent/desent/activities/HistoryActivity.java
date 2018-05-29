@@ -79,14 +79,10 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         setUpNavigationView();
 
-        /*spinner = (Spinner) findViewById(R.id.history_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.history_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*/
-
         myDb = new DatabaseHelper(this);
         myDb.getWeekDrivingDistance();
 
+        //annotation on graph, kgCO2, km, kWh
         histAnnotation = (TextView) findViewById(R.id.hist_annotation);
         histAnnotation.setText(getResources().getString(R.string.carbon_footprint_unit));
 
@@ -94,6 +90,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         labelOrganizer = (StackedBarLabel) findViewById(R.id.labelStackedBar);
         yaxis = (Yaxis) findViewById(R.id.y_axis);
 
+        //code for tab bar to switch between the separate graphs, sets different animation, colors etc.
         bnveHistory = (BottomNavigationViewEx) findViewById(R.id.navHistorySort);
         bnveHistory.setSelectedItemId(R.id.hist_cf);
         bnveHistory.enableAnimation(true);
@@ -132,8 +129,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onStart() {
         super.onStart();
-        //spinner.setSelection(0);
-        //bnveHistory.setSelectedItemId(R.id.hist_cf);
 
         AsyncHistorySetup asyncHistorySetup = new AsyncHistorySetup(this,
                 stackBarChart,
@@ -182,37 +177,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         }
         return true;
     }
-
-    /*public void initSpinner(){
-        spinner.setOnItemSelectedListener(spinnerHandler);
-    }
-
-    AdapterView.OnItemSelectedListener spinnerHandler = new AdapterView.OnItemSelectedListener() {
-
-        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-            switch (pos) {
-                case 0:
-                    displayCarbonFootprintGraph();
-                    break;
-                case 1:
-                    displayDistanceGraph();
-                    break;
-                case 2:
-                    displayEnergyConsumptionGraph();
-                    break;
-            }
-
-            stackBarChart.invalidate();
-            labelOrganizer.invalidate();
-            yaxis.invalidate();
-
-        }
-
-        public void onNothingSelected(AdapterView<?> parent) {
-        }
-
-    };*/
 
     protected void setUpNavigationView(){
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -267,7 +231,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         Float[] value1 = new Float[7];
         Float[] value2 = new Float[7];
 
-        //remove to get app to work properly
+        //hardcoded values that can be used to test the graphs
         /*
         value2[0] = (float) 1.4;
         value1[0] = (float) 0.8;
@@ -291,7 +255,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         value1[6] = (float) 0.9;
         */
 
-        //remove comment to get app to work properly
         for (int i=0; i<7; i++) {
             //to visualize when no values in db
             /*value1[i] = (float) i + (float) 1;
@@ -345,7 +308,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         float[] weekEnergyConsumption = energy.generateArrayWeekEnergyConsumption();
         Float[] value1 = new Float[7];
 
-        //remove to get app to walk properly
+        //hardcoded values that can be used to test the graphs
         /*
         value1[0] = (float) 4.9;
         value1[1] = (float) 6.0;
@@ -356,7 +319,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         value1[6] = (float) 5.5;
         */
 
-        //remove comment to work properly
         for (int i=0; i<7; i++)
             value1[i] = weekEnergyConsumption[i];
             //added to visualize graph with no values in db
@@ -406,6 +368,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         Float[] value2 = new Float[7];
         Float[] value3 = new Float[7];
 
+        //hardcoded values that can be used to test the graphs
         /*
         value1[0] = (float) 3;
         value2[0] = (float) 4;
@@ -436,9 +399,9 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         value3[6] = (float) 30.4;
         */
 
-        //remove comment to work properly
         for (int i=0; i<7; i++) {
-            /* to see how graph look likes
+            //hardcoded values that can be used to test the graphs
+            /*
             value1[i] = (float) i + (float) 1.0;
             value2[i] = (float) i + (float) 1.0;
             value3[i] = (float) i + (float) 1.0;
@@ -472,14 +435,12 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         stackBarChart.setDecimalsNumber(1);
 
         // stackBarChart.setDescription("Travel distance");
-
         labelOrganizer.clear();
 
         // Set color on labels
         labelOrganizer.addColorLabels(barColor1);
         labelOrganizer.addColorLabels(barColor2);
         labelOrganizer.addColorLabels(barColor3);
-
 
         // Set label text
         labelOrganizer.addLabelText(labelText1);
