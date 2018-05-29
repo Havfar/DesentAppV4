@@ -116,6 +116,8 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
         return true;
     }
 
+    // link to the DESENT project web page
+    // method opens browser from app
     public void browser(View view){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jpi-urbaneurope.eu/project/desent/"));
         startActivity(browserIntent);
