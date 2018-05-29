@@ -36,11 +36,8 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
 
     DrawerLayout drawer;
 
-    FriendAdapter adapter;
     List<Friend> friendList;
     RecyclerView recyclerView;
-
-    //SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +51,6 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setUpNavigationView();
 
@@ -73,6 +68,7 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         //method for retrieving friends from sql db
         //loadFriends();
 
+        //hardcoded friends - must be reviewed when app is connected to server
         friendList.add(new Friend(1, "Rob Adams", 135, 3.2, R.drawable.robadams));
         friendList.add(new Friend(2, "Mary Jones", 230, 2.2, R.drawable.maryjones));
         friendList.add(new Friend(3, "Patricia Clarkson", 53, 6.2, R.drawable.patriciaclarkson));
