@@ -39,7 +39,7 @@ public class InformationActivity extends AppCompatActivity implements Navigation
     private ViewPager viewPager;
     private LinearLayout dotsLayout;
     private int[] layouts;
-    private Button btnSkip, btnNext, btnRules;
+    private Button btnNext, btnRules;
     private DrawerLayout drawer;
 
     @Override
@@ -60,12 +60,12 @@ public class InformationActivity extends AppCompatActivity implements Navigation
 
         viewPager = findViewById(R.id.view_pager);
         dotsLayout = findViewById(R.id.layoutDots);
-        //btnSkip = findViewById(R.id.btn_skip);
         btnNext = findViewById(R.id.btn_next);
 
         //Display rules
         btnRules = findViewById(R.id.btnRules);
 
+        //dialog box that displays rules
         final AlertDialog.Builder builder = new AlertDialog.Builder(InformationActivity.this);
         builder.setTitle("You receive Earth Coins (EC) in the following situations:")
                 .setMessage("Stay on top of the leaderboard for a week: 2 EC" + "\n" + "\n" +
@@ -96,8 +96,7 @@ public class InformationActivity extends AppCompatActivity implements Navigation
             }
         });
 
-        // layouts of all welcome slides
-        // add few more layouts if you want
+        // layouts with the relevant welcome slides
         layouts = new int[]{
                 //R.layout.slide_welcome0,
                 R.layout.slide_welcome1,
