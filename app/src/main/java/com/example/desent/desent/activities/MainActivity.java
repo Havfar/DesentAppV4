@@ -930,7 +930,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 currentScore = score;
             }
             //Runnable code repeated very 15 minutes (900000 ms = 900 s = 15 min)
-            ScoreHandler.postDelayed(ScoreUpdatesRunnableCode, 30000); //30000 = 30 sek must be changed back to ex 900000
+            ScoreHandler.postDelayed(ScoreUpdatesRunnableCode, 900000);
         }
     };
 }
